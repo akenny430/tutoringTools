@@ -6,7 +6,7 @@
 
 
 Rational::Rational(int num, int den)
-    : m_num {num}, m_den {den}
+    : m_num{ num }, m_den{ den }
 {
     assert(den != 0); 
 }
@@ -25,10 +25,30 @@ void Rational::junk_print()
     std::cout << m_num << '/' << m_den << '\n';
 }
 
+// Rational Rational::m_get_reciprocal()
+// {
+//     // int temp = m_num; 
+//     // m_num = m_den; 
+//     // m_den = temp; 
+//     // return *this; 
+//     return Rational{ m_den, m_num }; 
+// }
+
+
+
 Rational operator*(const Rational& x, const Rational& y)
 {
     return Rational{ x.m_num * y.m_num, x.m_den * y.m_den }.simplify(); 
 }
+
+Rational operator/(const Rational& x, const Rational& y)
+{
+    // Rational z = y.m_get_reciprocal(); 
+    // return x * z; 
+    return Rational{ x.m_num * y.m_num, x.m_den * y.m_den }.simplify(); 
+}
+
+
 
 int main()
 {
@@ -46,6 +66,9 @@ int main()
 
     Rational e = c * d; 
     e.junk_print(); 
+
+    Rational f = b / c; 
+    f.junk_print(); 
 
     return 0; 
 }

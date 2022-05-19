@@ -6,6 +6,7 @@ class Rational
 private: 
     int m_num {}; 
     int m_den {}; 
+    // Rational m_get_reciprocal(); 
 public: 
     /* default constructor */
     Rational(int num = 1, int den = 1);
@@ -13,7 +14,9 @@ public:
     // void simplify();
     Rational& simplify();
 
+
     void junk_print(); 
 
     friend Rational operator*(const Rational& x, const Rational& y);
+    friend Rational operator/(const Rational& x, const Rational& y);
 }; 
