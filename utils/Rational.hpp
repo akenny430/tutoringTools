@@ -10,8 +10,8 @@ public:
     /* default constructor */
     Rational(int num = 1, int den = 1);
 
-    // void simplify(Rational x);
-    void simplify();
+    // void simplify();
+    Rational& simplify();
 
     void junk_print(); 
 

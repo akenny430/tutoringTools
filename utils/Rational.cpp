@@ -11,12 +11,13 @@ Rational::Rational(int num, int den)
     assert(den != 0); 
 }
 
-void Rational::simplify()
+Rational& Rational::simplify()
 {
     /* template this to possibly account for other data types? */
     int gcd = euclid_gcd(m_num, m_den); 
     m_num = m_num / gcd; 
     m_den = m_den / gcd; 
+    return *this; 
 }
 
 void Rational::junk_print()
@@ -26,9 +27,7 @@ void Rational::junk_print()
 
 Rational operator*(const Rational& x, const Rational& y)
 {
-    Rational product { x.m_num * y.m_num, x.m_den * y.m_den }; 
-    product.simplify();
-    return product; 
+    return Rational{ x.m_num * y.m_num, x.m_den * y.m_den }.simplify(); 
 }
 
 int main()
