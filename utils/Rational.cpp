@@ -14,8 +14,13 @@ Rational::Rational(int num, int den)
 Rational& Rational::simplify()
 {
     /* template this to possibly account for other data types? */
-    int gcd = euclid_gcd(m_num, m_den); 
-    if (gcd == 1)
+    if (m_den < 0) // if denominator is negative, multiply top and bottom by -1 
+    {
+        m_num *= -1; 
+        m_den *= -1; 
+    }
+    int gcd = euclid_gcd(m_num, m_den); // finding gcd 
+    if (gcd == 1) // if gcd is 1, don't even bother dividing 
         return *this; 
     m_num = m_num / gcd; 
     m_den = m_den / gcd; 
@@ -25,6 +30,11 @@ Rational& Rational::simplify()
 void Rational::junk_print()
 {
     std::cout << m_num << '/' << m_den << '\n';
+}
+
+void Rational::print_individual()
+{
+    std::cout << "Numerator = " << m_num << ", Denominator = " << m_den << '\n'; 
 }
 
 // Rational Rational::m_get_reciprocal()
@@ -119,6 +129,7 @@ int main()
     e3.junk_print(); 
     e4.junk_print(); 
     e5.junk_print(); 
+    e5.print_individual(); 
 
     std::cout << "Division\n"; 
     Rational f = b / c; 

@@ -17,6 +17,7 @@ public:
 
 
     void junk_print(); 
+    void print_individual();
 
     /* multiplication */
     friend Rational operator*(const Rational& x, const Rational& y);
