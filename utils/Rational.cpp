@@ -9,14 +9,12 @@ Rational::Rational(int num, int den)
     : m_num {num}, m_den {den}
 {
     assert(den != 0); 
-    // m_num = num; 
-    // m_den = den; 
 }
 
-void Rational::simplify(Rational x)
+void Rational::simplify()
 {
     /* template this to possibly account for other data types? */
-    int gcd = euclid_gcd(x.m_num, x.m_den); 
+    int gcd = euclid_gcd(m_num, m_den); 
     m_num = m_num / gcd; 
     m_den = m_den / gcd; 
 }
@@ -34,6 +32,11 @@ int main()
     b.junk_print(); 
     Rational c {5, 7}; 
     c.junk_print(); 
+
+    Rational d {3, 6}; 
+    d.junk_print(); 
+    d.simplify(); 
+    d.junk_print();
 
     return 0; 
 }
