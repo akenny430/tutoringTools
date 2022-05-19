@@ -27,4 +27,14 @@ public:
     friend Rational operator/(const Rational& x, const Rational& y);
     friend Rational operator/(const Rational& x, int y); 
     friend Rational operator/(int x, const Rational& y); 
+
+    /* addition */
+    friend Rational operator+(const Rational& x, const Rational& y); 
+    friend Rational operator+(const Rational& x, int y); 
+    friend Rational operator+(int x, const Rational& y); 
+
+    /* subtraction */
+    friend Rational operator-(const Rational& x, const Rational& y); 
+    friend Rational operator-(const Rational& x, int y); 
+    friend Rational operator-(int x, const Rational& y); 
 }; 

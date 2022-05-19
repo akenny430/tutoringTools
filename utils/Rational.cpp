@@ -1,5 +1,5 @@
 #include "Rational.hpp"
-#include "numberTheory.hpp" /* euclid_gcd */ 
+#include "numberTheory.hpp" /* euclid_gcd, lcm */ 
 
 #include <iostream>
 
@@ -48,7 +48,7 @@ Rational operator*(const Rational& x, int y)
 }
 Rational operator*(int x, const Rational& y)
 {
-    return (Rational{ x } * y).simplify(); 
+    return y * x; 
 }
 
 Rational operator/(const Rational& x, const Rational& y)
@@ -63,9 +63,39 @@ Rational operator/(const Rational& x, int y)
 }
 Rational operator/(int x, const Rational& y)
 {
-    return (Rational{ x } / y).simplify(); 
+    return y / x; 
 }
 
+Rational operator+(const Rational& x, const Rational& y)
+{
+    int the_lcm = lcm(x.m_den, y.m_den); 
+    int l_num = x.m_num * (the_lcm / x.m_den); 
+    int r_num = y.m_num * (the_lcm / y.m_den); 
+    return Rational{ l_num + r_num, the_lcm }.simplify(); 
+}
+Rational operator+(const Rational& x, int y)
+{
+    return (x + Rational{ y * x.m_den, x.m_den }).simplify(); 
+}
+Rational operator+(int x, const Rational& y)
+{
+    return y + x; 
+}
+
+Rational operator-(const Rational& x, const Rational& y)
+{
+    return x + ( -1 * y ); 
+}
+Rational operator-(const Rational& x, int y)
+{
+    return x + (-y); 
+}
+/* TODO: have to make negative sign go into numerator, something to do with lcm?  */
+Rational operator-(int x, const Rational& y)
+{
+    // return x + (-1 * y); 
+    return -1 * ( y - x ); 
+}
 
 
 int main()
@@ -76,15 +106,19 @@ int main()
     Rational d {3, 6}; 
     d.junk_print(); 
     d.simplify(); 
-    d.junk_print();
+    d.junk_print(); 
 
-    std::cout << "Multiplication\n"; 
-    Rational e = c * d; 
-    Rational e2 = e * 5; 
-    Rational e3 = e2 * 5; 
+    std::cout << "Addition\n"; 
+    Rational e = c + d; 
+    Rational e2 = e + 1; 
+    Rational e3 = 1 + e2; 
+    Rational e4 = e3 - 1; 
+    Rational e5 = 1 - e4; 
     e.junk_print(); 
     e2.junk_print(); 
     e3.junk_print(); 
+    e4.junk_print(); 
+    e5.junk_print(); 
 
     std::cout << "Division\n"; 
     Rational f = b / c; 
