@@ -113,3 +113,9 @@ int euclid_gcd(int x, int y)
     int r = x % y; 
     return r == 0 ? y : euclid_gcd(y, r); 
 }
+
+int lcm(int x, int y)
+{
+    int gcd = euclid_gcd(x, y); 
+    return (x / gcd) * y; 
+}

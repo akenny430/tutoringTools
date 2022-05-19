@@ -14,13 +14,23 @@ int is_prime(int n);
 
 
 /**
- * Finds GCD between two positive numbers using Euclid's algorithm 
+ * Finds GCD of two positive numbers using Euclid's algorithm 
  * 
  * @param x: first number 
  * @param y: second number 
  * 
- * @returns: GCD between two 
+ * @returns: GCD between x and y
 */
 int euclid_gcd(int x, int y); 
+
+/**
+ * Finds LCM of two positive numbers 
+ * 
+ * @param x: first number 
+ * @param y: second number 
+ * 
+ * @returns: GCD between x and y
+*/
+int lcm(int x, int y); 
 
 // #endif
