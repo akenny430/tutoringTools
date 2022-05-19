@@ -106,12 +106,19 @@ int is_prime(int n)
 
 
 
+int positive_gcd(int x, int y)
+{
+    assert(x >= 0); 
+    assert(y >= 0); 
+    int r = x % y; // remainder
+    return r == 0 ? y : euclid_gcd(y, r); // recursively calculate until we are done 
+}
 int euclid_gcd(int x, int y)
 {
-    /* finds the gcd of x and y using Euclid's algorithm */
-    // return 0; 
-    int r = x % y; 
-    return r == 0 ? y : euclid_gcd(y, r); 
+    // making x and y positive if they are not (better way to do this?)
+    if (x <= 0) {x *= -1;}
+    if (y <= 0) {y *= -1;}
+    return positive_gcd(x, y); 
 }
 
 int lcm(int x, int y)
