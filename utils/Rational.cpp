@@ -24,6 +24,13 @@ void Rational::junk_print()
     std::cout << m_num << '/' << m_den << '\n';
 }
 
+Rational operator*(const Rational& x, const Rational& y)
+{
+    Rational product { x.m_num * y.m_num, x.m_den * y.m_den }; 
+    product.simplify();
+    return product; 
+}
+
 int main()
 {
     Rational a {}; 
@@ -37,6 +44,9 @@ int main()
     d.junk_print(); 
     d.simplify(); 
     d.junk_print();
+
+    Rational e = c * d; 
+    e.junk_print(); 
 
     return 0; 
 }

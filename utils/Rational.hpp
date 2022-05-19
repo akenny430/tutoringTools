@@ -14,4 +14,6 @@ public:
     void simplify();
 
     void junk_print(); 
+
+    friend Rational operator*(const Rational& x, const Rational& y);
 }; 
