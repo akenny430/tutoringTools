@@ -11,12 +11,20 @@ public:
     /* default constructor */
     Rational(int num = 1, int den = 1);
 
+    /* simplifying the rational expression if possible */
     // void simplify();
     Rational& simplify();
 
 
     void junk_print(); 
 
+    /* multiplication */
     friend Rational operator*(const Rational& x, const Rational& y);
+    friend Rational operator*(const Rational& x, int y); 
+    friend Rational operator*(int x, const Rational& y); 
+
+    /* division */
     friend Rational operator/(const Rational& x, const Rational& y);
+    friend Rational operator/(const Rational& x, int y); 
+    friend Rational operator/(int x, const Rational& y); 
 }; 
