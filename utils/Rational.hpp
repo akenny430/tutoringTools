@@ -1,5 +1,7 @@
 #pragma once 
 
+#include <iostream>
+
 class Rational
 {
     // using number_type = int; /* maybe want to make numbers as long int or something else  */
@@ -38,4 +40,7 @@ public:
     friend Rational operator-(const Rational& x, const Rational& y); 
     friend Rational operator-(const Rational& x, int y); 
     friend Rational operator-(int x, const Rational& y); 
+
+    /* printing */
+    friend std::ostream& operator<<(std::ostream& out, const Rational& x);
 }; 

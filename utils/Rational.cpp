@@ -107,37 +107,34 @@ Rational operator-(int x, const Rational& y)
     return -1 * ( y - x ); 
 }
 
+std::ostream& operator<<(std::ostream& out, const Rational& x)
+{
+    if (x.m_den == 1)
+    {
+        out << x.m_num; 
+        return out; 
+    }
+    out << x.m_num << '/' << x.m_den; 
+    return out; 
+}
+
 
 int main()
 {
-    Rational a {}; 
-    Rational b {2}; 
-    Rational c {5, 7}; 
-    Rational d {3, 6}; 
-    d.junk_print(); 
-    d.simplify(); 
-    d.junk_print(); 
+    std::cout << "Declaring variables:\n"; 
+    Rational x {5, 7}; 
+    Rational y {2, 3}; 
+    std::cout << "x = " << x << ", y = " << y << '\n';
 
-    std::cout << "Addition\n"; 
-    Rational e = c + d; 
-    Rational e2 = e + 1; 
-    Rational e3 = 1 + e2; 
-    Rational e4 = e3 - 1; 
-    Rational e5 = 1 - e4; 
-    e.junk_print(); 
-    e2.junk_print(); 
-    e3.junk_print(); 
-    e4.junk_print(); 
-    e5.junk_print(); 
-    e5.print_individual(); 
+    std::cout << "Addition and subtraction\n"; 
+    std::cout << "x + y = " << x + y << '\n'; 
+    std::cout << "x - y = " << x - y << '\n'; 
+    std::cout << "x - 1 = " << x - 1 << '\n'; 
 
-    std::cout << "Division\n"; 
-    Rational f = b / c; 
-    Rational f2 = f / 3; 
-    Rational f3 = 2 / f2; 
-    f.junk_print(); 
-    f2.junk_print(); 
-    f3.junk_print(); 
+    std::cout << "Multiplication and division\n"; 
+    std::cout << "x * y = " << x * y << '\n'; 
+    std::cout << "x / y = " << x / y << '\n'; 
+    std::cout << "4 / y = " << 4 / y << '\n'; 
 
     return 0; 
 }
