@@ -20,7 +20,7 @@ std::array<int, 3> find_numbers(Rational a, Rational b, Rational c)
 
 
 /* given nonzero B and C, find two numbers that satisfy system if they exist */
-std::array<int, 2> find_roots(int B, int C)
+std::array<int, 2> solve_system(int B, int C)
 {
     assert( (B != 0) & (C != 0) ); // make sure both are positive 
     
@@ -33,7 +33,7 @@ std::array<int, 2> find_roots(int B, int C)
         int halfway = ((pos_B) % 2) == 0 ? pos_B / 2 : (pos_B - 1) / 2; // getting halfway point 
         for ( left = 1; left <= halfway; ++left )
         {
-            right = halfway - left;
+            right = pos_B - left;
             if (left * right == C)
                 return std::array<int, 2> { sign_change * left, sign_change * right }; 
         }
@@ -52,6 +52,42 @@ std::array<int, 2> find_roots(int B, int C)
         }
     }
     // if no possible combo is found 
-    return std::array<int, 2> { 0, 0 };
-    
+    return std::array<int, 2> { 0, 0 };   
+}
+
+
+
+/* given three coefficients as rational numbers, find the two numbers that satisfy system */
+std::array<Rational, 2> find_roots(Rational a, Rational b, Rational c)
+{
+    /* for now, assume B != 0, but can still deal with case of C == 0 */
+    assert((a.get_num() != 0) & (b.get_num() != 0)); 
+    if (c.get_num() == 0)
+    {
+        return std::array<Rational, 2> { Rational{ 0 }, b / a }; 
+    }
+    std::array<int, 3> params = find_numbers(a, b, c); 
+    std::array<int, 2> sys_sol = solve_system(params[1], params[2]); 
+    // returning both solutions as Rationals 
+    return std::array<Rational, 2> { 
+        Rational{ sys_sol[0], params[0] }.simplify(), Rational{ sys_sol[1], params[0] }.simplify()
+    }; 
+}
+
+
+
+int main()
+{
+    Rational a {}; 
+    Rational b { 1 }; 
+    Rational c { -90 }; 
+    std::cout << "Coefficients are: a = " << a << ", b = " << b << ", and c = " << c << '\n'; 
+
+    std::array<Rational, 2> solutions = find_roots(a, b, c); 
+    for ( auto sol : solutions )
+    {
+        std::cout << "root = " << sol << '\n'; 
+    }
+
+    return 0; 
 }
