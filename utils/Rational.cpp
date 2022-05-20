@@ -73,7 +73,8 @@ Rational operator/(const Rational& x, int y)
 }
 Rational operator/(int x, const Rational& y)
 {
-    return y / x; 
+    Rational z = y / x; 
+    return Rational{ z.m_den, z.m_num }; 
 }
 
 Rational operator+(const Rational& x, const Rational& y)
