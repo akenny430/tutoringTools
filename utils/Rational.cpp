@@ -130,7 +130,7 @@ std::ostream& operator<<(std::ostream& out, const Rational& x)
 }
 
 
-int main()
+int examples()
 {
     std::cout << "Declaring variables:\n"; 
     Rational x {5, 7}; 
