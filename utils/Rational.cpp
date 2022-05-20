@@ -11,6 +11,16 @@ Rational::Rational(int num, int den)
     assert(den != 0); 
 }
 
+int Rational::get_num()
+{
+    return m_num; 
+}
+
+int Rational::get_den()
+{
+    return m_den; 
+}
+
 Rational& Rational::simplify()
 {
     /* template this to possibly account for other data types? */

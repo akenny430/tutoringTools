@@ -13,6 +13,10 @@ public:
     /* default constructor */
     Rational(int num = 1, int den = 1);
 
+    /* getting numerator and denominator */
+    int get_num(); 
+    int get_den(); 
+
     /* simplifying the rational expression if possible */
     // void simplify();
     Rational& simplify();
