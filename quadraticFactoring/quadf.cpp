@@ -22,7 +22,7 @@ std::array<int, 3> find_numbers(Rational a, Rational b, Rational c)
 /* given nonzero B and C, find two numbers that satisfy system if they exist */
 std::array<int, 2> solve_system(int B, int C)
 {
-    assert( (B != 0) & (C != 0) ); // make sure both are positive 
+    assert( (B != 0) && (C != 0) ); // make sure both are positive 
     
     int left{}; 
     int right{};
@@ -61,7 +61,8 @@ std::array<int, 2> solve_system(int B, int C)
 std::array<Rational, 2> find_roots(Rational a, Rational b, Rational c)
 {
     /* for now, assume B != 0, but can still deal with case of C == 0 */
-    assert((a.get_num() != 0) & (b.get_num() != 0)); 
+    // assert((a.get_num() != 0) && (b.get_num() != 0)); 
+    assert((a != 0) && (b != 0)); 
     if (c.get_num() == 0)
     {
         return std::array<Rational, 2> { Rational{ 0 }, b / a }; 

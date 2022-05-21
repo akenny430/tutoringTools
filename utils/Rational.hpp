@@ -20,6 +20,7 @@ public:
     /* simplifying the rational expression if possible */
     // void simplify();
     Rational& simplify();
+    Rational give_simplify() const;
 
 
     void junk_print(); 
@@ -47,4 +48,14 @@ public:
 
     /* printing */
     friend std::ostream& operator<<(std::ostream& out, const Rational& x);
+
+    /* comparison == */
+    friend bool operator==(const Rational& x, const Rational& y); 
+    friend bool operator==(const Rational& x, int y); 
+    friend bool operator==(int x, const Rational& y); 
+
+    /* comparison != */
+    friend bool operator!=(const Rational& x, const Rational& y); 
+    friend bool operator!=(const Rational& x, int y); 
+    friend bool operator!=(int x, const Rational& y); 
 }; 

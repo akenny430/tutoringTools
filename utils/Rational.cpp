@@ -2,6 +2,7 @@
 #include "numberTheory.hpp" /* euclid_gcd, lcm */ 
 
 #include <iostream>
+#include <array> 
 
 
 
@@ -21,20 +22,33 @@ int Rational::get_den()
     return m_den; 
 }
 
+std::array<int, 2> aux_simplify(int num, int den)
+{
+    if (den < 0) // if denominator is negative, multiply top and bottom by -1 
+    {
+        num *= -1; 
+        den *= -1; 
+    }
+    int gcd = euclid_gcd(num, den); // finding gcd 
+    if (gcd == 1) // if gcd is 1, don't even bother dividing 
+        return std::array<int, 2> { num, den };
+    num = num / gcd; 
+    den = den / gcd;
+    return std::array<int, 2> { num, den };
+}
+
 Rational& Rational::simplify()
 {
-    /* template this to possibly account for other data types? */
-    if (m_den < 0) // if denominator is negative, multiply top and bottom by -1 
-    {
-        m_num *= -1; 
-        m_den *= -1; 
-    }
-    int gcd = euclid_gcd(m_num, m_den); // finding gcd 
-    if (gcd == 1) // if gcd is 1, don't even bother dividing 
-        return *this; 
-    m_num = m_num / gcd; 
-    m_den = m_den / gcd; 
+    std::array<int, 2> new_vals = aux_simplify(m_num, m_den); 
+    m_num = new_vals[0]; 
+    m_den = new_vals[1];
     return *this; 
+}
+
+Rational Rational::give_simplify() const 
+{
+    std::array<int, 2> new_vals = aux_simplify(m_num, m_den); 
+    return Rational{ new_vals[0], new_vals[1] }; 
 }
 
 void Rational::junk_print()
@@ -47,6 +61,7 @@ void Rational::print_individual()
     std::cout << "Numerator = " << m_num << ", Denominator = " << m_den << '\n'; 
 }
 
+/* constfun */
 // Rational Rational::m_get_reciprocal()
 // {
 //     // int temp = m_num; 
@@ -128,6 +143,40 @@ std::ostream& operator<<(std::ostream& out, const Rational& x)
     out << x.m_num << '/' << x.m_den; 
     return out; 
 }
+
+bool operator==(const Rational& x, const Rational& y)
+{
+    Rational z = x.give_simplify(); 
+    Rational w = y.give_simplify(); 
+    return ( (z.m_num == w.m_num) && ( z.m_den == w.m_den ) ); 
+}
+
+bool operator==(const Rational& x, int y)
+{
+    return ( (x.m_num == y) && (x.m_den == 1) ); 
+}
+
+bool operator==(int x, const Rational& y)
+{
+    return y == x; 
+}
+
+bool operator!=(const Rational& x, const Rational& y)
+{
+    return !(x == y); 
+}
+
+bool operator!=(const Rational& x, int y)
+{
+    return !(x == y); 
+}
+
+bool operator!=(int x, const Rational& y)
+{
+    return !(x == y); 
+}
+
+
 
 
 int examples()
