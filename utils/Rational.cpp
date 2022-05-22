@@ -32,8 +32,8 @@ std::array<int, 2> aux_simplify(int num, int den)
     int gcd = euclid_gcd(num, den); // finding gcd 
     if (gcd == 1) // if gcd is 1, don't even bother dividing 
         return std::array<int, 2> { num, den };
-    num = num / gcd; 
-    den = den / gcd;
+    num /= gcd; 
+    den /= gcd;
     return std::array<int, 2> { num, den };
 }
 
@@ -144,6 +144,11 @@ std::ostream& operator<<(std::ostream& out, const Rational& x)
     return out; 
 }
 
+// std::ostream& operator>>(std::ostream& out, const Rational& x)
+// {
+
+// }
+
 bool operator==(const Rational& x, const Rational& y)
 {
     Rational z = x.give_simplify(); 
@@ -179,22 +184,22 @@ bool operator!=(int x, const Rational& y)
 
 
 
-int examples()
-{
-    std::cout << "Declaring variables:\n"; 
-    Rational x {5, 7}; 
-    Rational y {2, 3}; 
-    std::cout << "x = " << x << ", y = " << y << '\n';
+// int main()
+// {
+//     std::cout << "Declaring variables:\n"; 
+//     Rational x {5, 7}; 
+//     Rational y {2, 3}; 
+//     std::cout << "x = " << x << ", y = " << y << '\n';
 
-    std::cout << "Addition and subtraction\n"; 
-    std::cout << "x + y = " << x + y << '\n'; 
-    std::cout << "x - y = " << x - y << '\n'; 
-    std::cout << "x - 1 = " << x - 1 << '\n'; 
+//     std::cout << "Addition and subtraction\n"; 
+//     std::cout << "x + y = " << x + y << '\n'; 
+//     std::cout << "x - y = " << x - y << '\n'; 
+//     std::cout << "x - 1 = " << x - 1 << '\n'; 
 
-    std::cout << "Multiplication and division\n"; 
-    std::cout << "x * y = " << x * y << '\n'; 
-    std::cout << "x / y = " << x / y << '\n'; 
-    std::cout << "4 / y = " << 4 / y << '\n'; 
+//     std::cout << "Multiplication and division\n"; 
+//     std::cout << "x * y = " << x * y << '\n'; 
+//     std::cout << "x / y = " << x / y << '\n'; 
+//     std::cout << "4 / y = " << 4 / y << '\n'; 
 
-    return 0; 
-}
+//     return 0; 
+// }

@@ -77,18 +77,18 @@ std::array<Rational, 2> find_roots(Rational a, Rational b, Rational c)
 
 
 
-int main()
-{
-    Rational a {}; 
-    Rational b { 1 }; 
-    Rational c { -90 }; 
-    std::cout << "Coefficients are: a = " << a << ", b = " << b << ", and c = " << c << '\n'; 
+// int main()
+// {
+//     Rational a {}; 
+//     Rational b { 1 }; 
+//     Rational c { -90 }; 
+//     std::cout << "Coefficients are: a = " << a << ", b = " << b << ", and c = " << c << '\n'; 
 
-    std::array<Rational, 2> solutions = find_roots(a, b, c); 
-    for ( auto sol : solutions )
-    {
-        std::cout << "root = " << sol << '\n'; 
-    }
+//     std::array<Rational, 2> solutions = find_roots(a, b, c); 
+//     for ( auto sol : solutions )
+//     {
+//         std::cout << "root = " << sol << '\n'; 
+//     }
 
-    return 0; 
-}
+//     return 0; 
+// }

@@ -46,8 +46,9 @@ public:
     friend Rational operator-(const Rational& x, int y); 
     friend Rational operator-(int x, const Rational& y); 
 
-    /* printing */
+    /* iostream */
     friend std::ostream& operator<<(std::ostream& out, const Rational& x);
+    // friend std::ostream& operator>>(std::ostream& out, const Rational& x);
 
     /* comparison == */
     friend bool operator==(const Rational& x, const Rational& y); 
