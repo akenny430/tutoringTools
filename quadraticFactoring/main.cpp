@@ -19,9 +19,10 @@ int main()
 
     while(1) 
     {
-        std::cin >> in_a >> in_b >> in_c; 
+        std::cin >> in_a; 
         if (in_a[0] == '0') 
             break; 
+        std::cin >> in_b >> in_c; 
 
         a = turn_from_string(in_a); 
         b = turn_from_string(in_b); 
@@ -29,7 +30,7 @@ int main()
 
         std::array<Rational, 2> roots = find_roots(a, b, c); 
 
-        std::cout << "Roots at x = " << roots[0] << " and x = " << roots[1] << '\n'; 
+        std::cout << "a = " << a << ", roots at x = " << roots[0] << " and x = " << roots[1] << '\n'; 
     }
     
      
